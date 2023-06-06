@@ -44,7 +44,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/reader/insert image
 /gate/source/VoxSource/imageReader/translator/insert linear
 /gate/source/VoxSource/imageReader/linearTranslator/setScale 0.03 Bq
-/gate/source/VoxSource/imageReader/readFile Defrise_200x200x200.h33
+/gate/source/VoxSource/imageReader/readFile PATH_TO/Defrise_200x200x200.h33
 /gate/source/VoxSource/imageReader/verbose 1
 /gate/source/VoxSource/gps/particle gamma
 /gate/source/VoxSource/gps/ang/type iso
@@ -53,7 +53,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/gps/ang/minphi 0.0  deg
 /gate/source/VoxSource/gps/ang/maxphi 360.0 deg
 /gate/source/VoxSource/gps/energytype Mono
-/gate/source/VoxSource/gps/ene/mono 140.5 keV
+/gate/source/VoxSource/gps/ene/mono 140.5 keV # For Tc-99m
 /gate/source/VoxSource/setIntensity 1
 /gate/source/VoxSource/setPosition -100.0 -100.0 -100.0 mm
 /gate/source/VoxSource/dump 1
@@ -63,7 +63,7 @@ The default position of the voxelized source is in the 1<sup>st</sup> quarter, s
 The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
 ```ruby
 /gate/world/daughters/name VoxAttn
-/gate/world/daughters/insert ImageNestedParametrisedVolume
+/gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
 /gate/VoxAttn/geometry/setImage Defrise_Atn_200x200x200.h33
 /gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Defrise_Range.dat
 /gate/VoxAttn/placement/setTranslation  0. 0. 0. cm

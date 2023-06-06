@@ -83,7 +83,7 @@ Indices in the voxelized attenuation image are translated into materials via the
 We provide the Derenzo attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The Derenzo phantom can be used to estimate the tomographic spatial resolution of nuclear medicine imaging systems.
 
 <p align="center">
-  <img width="864" alt="Screen Shot 2023-06-06 at 4 35 14 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/9e1f4650-ebe8-4cf7-9f18-ec350d269af9">
+  <img width="857" alt="Screen Shot 2023-06-06 at 4 50 43 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/62392420-cfc9-441e-9820-6e13a0bc3478">
 </p>
 
 This cylindrical phantom of 22 cm diameter by 16 cm in height, was adapted from the rod
@@ -144,16 +144,15 @@ Indices in the voxelized attenuation image are translated into materials via the
 We provide the Jaszczak attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The Jaszczak phantom is used to estimate tomographic uniformity, contrast, and spatial resolution in SPECT quality control procedures.
 
 <p align="center">
-  <img width="1191" alt="Screen Shot 2023-06-06 at 3 42 03 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/6d1ebc0e-0ae9-4ea6-915d-f469efc60d5a">
+<img width="857" alt="Screen Shot 2023-06-06 at 5 12 12 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/5c167c50-7101-4ece-a377-b5c79e010e1c">
 </p>
 
-This cylindrical phantom of 22 cm diameter by 16 cm in height, was adapted from the rod
-region of the ultra-deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation]
-(http://www.spect.com/products-all.html). The phantom consists of hot rods and an active uniform background region with a contrast ratio of 10:1 (**Derenzo_220x220x161_with_bkg.i33**). We also provide the activity phantom without background activity (**Derenzo_203x191x161_without_bkg.i33**). The phantom consists of six sets of rod sources with diameters of 11.1, 9.5, 7.9, 6.4, 4.8, and 3.2 mm. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
+This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation]
+(http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with cold spheres, and another one with cold rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
 
-The Derenzo activity phantom can be simulated as being filled with uniform tracer activity throughout the volume of the hot rods and with or without background activity. The integer values for the hot rods and cold regions are set to 10 and 0, respectively. The background value is set to 1. It consists of 203x191x161 voxels of 1 mm<sup>3</sup> (size of 12.5 MB) for the version without active background. It consists of 220x220x161 voxels of 1 mm<sup>3</sup> (size of 15.6 MB) for the version **with** active background.
+The Jaszczak activity phantom (**Jaszczak_238x237x134.i33**) can be simulated as being filled with uniform tracer activity. The integer values for the hot and cold regions are set to 10 and 0, respectively. It consists of 238x237x134 voxels of 1 mm<sup>3</sup> (size of 15.1 MB).
   
-The voxelized attenuation phantom (**Derenzo_222x222x161_Attn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water) and 0 outside, respectively. It consists of 222x222x161 voxels of 1 mm<sup>3</sup> (size of 15.9 MB).
+The voxelized attenuation phantom (**Jaszczak_238x237x134_Atn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water except the rod/sphere regions) and 0 outside, respectively. It consists of 238x237x134 voxels of 1 mm<sup>3</sup> (size of 15.1 MB).
 
 ## 4.2 Usage in GATE
 
@@ -163,8 +162,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/reader/insert image
 /gate/source/VoxSource/imageReader/translator/insert linear
 /gate/source/VoxSource/imageReader/linearTranslator/setScale 0.03 Bq
-/gate/source/VoxSource/imageReader/readFile PATH_TO/Derenzo_203x191x161_without_bkg.h33 #w/o bkg
-#/gate/source/VoxSource/imageReader/readFile PATH_TO/Derenzo_220x220x161_with_bkg.h33 #w bkg
+/gate/source/VoxSource/imageReader/readFile PATH_TO/Derenzo_203x191x161_without_bkg.h33
 /gate/source/VoxSource/imageReader/verbose 1
 /gate/source/VoxSource/gps/particle gamma
 /gate/source/VoxSource/gps/ang/type iso

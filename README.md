@@ -173,8 +173,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/gps/energytype Mono
 /gate/source/VoxSource/gps/ene/mono 140.5 keV # For Tc-99m
 /gate/source/VoxSource/setIntensity 1
-/gate/source/VoxSource/setPosition -101.5 -95.5 -80.5 mm #w/o bkg
-#/gate/source/VoxSource/setPosition -110.0 -110.0 -80.5 mm #w bkg
+/gate/source/VoxSource/setPosition -223.589814 -222.650361 -167.5 mm
 /gate/source/VoxSource/dump 1
 ```
 The default position of the voxelized source is in the 1<sup>st</sup> quarter, so the voxelized source has to be shifted over half its dimension in the negative direction on each axis. As the voxel size is 1 mm<sup>3</sup>, dimensions of the image (*provided in the file name*) need to be divided by two along X, Y, Z dimensions.
@@ -183,8 +182,8 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 ```ruby
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
-/gate/VoxAttn/geometry/setImage Derenzo_222x222x161_Attn.h33
-/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Derenzo_Range.dat
+/gate/VoxAttn/geometry/setImage Jaszczak_238x237x134_Atn.h33
+/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Jaszczak_Range.dat
 /gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
 /gate/VoxAttn/attachPhantomSD
 ```

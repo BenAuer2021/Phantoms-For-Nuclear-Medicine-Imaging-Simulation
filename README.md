@@ -38,32 +38,41 @@ The voxelized attenuation phantom (**Defrise_Atn_200x200x200.i33**) can be used 
 
 ## 2.2 Usage in GATE
 
-/gate/world/daughters/name voxelPhantom
-/gate/world/daughters/insert ImageNestedParametrisedVolume #ImageNestedParametrisedVolume
-/gate/voxelPhantom/geometry/setImage Defrise_Atn_200x200x200.h33
-/gate/voxelPhantom/geometry/setRangeToMaterialFile Attenuation_Defrise_Range.dat
-/gate/voxelPhantom/placement/setTranslation  0. 0. 0. cm
-#/gate/voxelPhantom/setSkipEqualMaterials 1
-/gate/voxelPhantom/attachPhantomSD
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
+```ruby
+/gate/source/addSource VoxSource voxel
+/gate/source/VoxSource/reader/insert image
+/gate/source/VoxSource/imageReader/translator/insert linear
+/gate/source/VoxSource/imageReader/linearTranslator/setScale 0.03 Bq
+/gate/source/VoxSource/imageReader/readFile Defrise_200x200x200.h33
+/gate/source/VoxSource/imageReader/verbose 1
+/gate/source/VoxSource/gps/particle gamma
+/gate/source/VoxSource/gps/ang/type iso
+/gate/source/VoxSource/gps/ang/mintheta 0.0 deg
+/gate/source/VoxSource/gps/ang/maxtheta 180.0 deg
+/gate/source/VoxSource/gps/ang/minphi 0.0  deg
+/gate/source/VoxSource/gps/ang/maxphi 360.0 deg
+/gate/source/VoxSource/gps/energytype Mono
+/gate/source/VoxSource/gps/ene/mono 140.5 keV
+/gate/source/VoxSource/setIntensity 1
+/gate/source/VoxSource/setPosition -100.0 -100.0 -100.0 mm
+/gate/source/VoxSource/dump 1
+```
+The default position of the voxelized source is in the 1<sup>st</sup> quarter, so the voxelized source has to be shifted over half its dimension in the negative direction on each axis. As the voxel size is 1 mm<sup>3</sup>, dimensions of the image (*provided in the file name*) need to be divided by two along X, Y, Z dimensions.
 
-/gate/source/addSource hof_brain voxel
-/gate/source/hof_brain/reader/insert image
-/gate/source/hof_brain/imageReader/translator/insert linear
-/gate/source/hof_brain/imageReader/linearTranslator/setScale 0.03 Bq
-/gate/source/hof_brain/imageReader/readFile Defrise_200x200x200.h33
-/gate/source/hof_brain/imageReader/verbose 1
-/gate/source/VS_gamma/gps/particle gamma
-/gate/source/VS_gamma/gps/ang/type iso
-/gate/source/VS_gamma/gps/ang/mintheta 0.0 deg
-/gate/source/VS_gamma/gps/ang/maxtheta 180.0 deg
-/gate/source/VS_gamma/gps/ang/minphi 0.0  deg
-/gate/source/VS_gamma/gps/ang/maxphi 360.0 deg
-/gate/source/hof_brain/gps/energytype Mono
-/gate/source/VS_gamma/gps/ene/mono 140.5 keV
-/gate/source/hof_brain/setIntensity 1
-# THE DEFAULT POSITION OF THE VOXELIZED SOURCE IS IN THE 1ST QUARTER
-# SO THE VOXELIZED SOURCE HAS TO BE SHIFTED OVER HALF ITS DIMENSION IN THE NEGATIVE DIRECTION ON EACH AXIS
-/gate/source/hof_brain/setPosition -100.0 -100.0 -100.0 mm
-/gate/source/hof_brain/dump 1
+The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+```ruby
+/gate/world/daughters/name VoxAttn
+/gate/world/daughters/insert ImageNestedParametrisedVolume
+/gate/VoxAttn/geometry/setImage Defrise_Atn_200x200x200.h33
+/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Defrise_Range.dat
+/gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
+/gate/VoxAttn/attachPhantomSD
+```
 
-
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Defrise_Range.dat'* file. For example, the following indices to materials conversion,
+```ruby
+2
+0 0 Air
+1 1 Water
+```

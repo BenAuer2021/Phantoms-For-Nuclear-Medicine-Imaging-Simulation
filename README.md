@@ -144,15 +144,14 @@ Indices in the voxelized attenuation image are translated into materials via the
 We provide the Jaszczak attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The Jaszczak phantom is used to estimate tomographic uniformity, contrast, and spatial resolution in SPECT quality control procedures.
 
 <p align="center">
-<img width="857" alt="Screen Shot 2023-06-06 at 5 12 12 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/5c167c50-7101-4ece-a377-b5c79e010e1c">
+<img width="872" alt="Screen Shot 2023-06-06 at 5 50 07 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/2bce2ebd-0263-4e17-9ea8-ee2a5bd34d03">
 </p>
 
-This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation]
-(http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with cold spheres, and another one with cold rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
+This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation](http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with cold spheres, and another one with cold rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
 
-The Jaszczak activity phantom (**Jaszczak_238x237x134.i33**) can be simulated as being filled with uniform tracer activity. The integer values for the hot and cold regions are set to 10 and 0, respectively. It consists of 23237x134 voxels of 1 mm<sup>3</sup> (size of 15.1 MB).
+The Jaszczak activity phantom (**Jaszczak_238x237x134.i33**) can be simulated as being filled with uniform tracer activity. The integer values for the hot and cold regions are set to 10 and 0, respectively. It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB).
   
-The voxelized attenuation phantom (**Jaszczak_238x237x134_Atn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water except the rod/sphere regions) and 0 outside, respectively. It consists of 238x237x134 voxels of 1 mm<sup>3</sup> (size of 15.1 MB). The attenuation phantom cannot make use of any interpolation counter to the activity phantom as it must strictly represent materials as binary values (0 for material 1, 1 for material 2, 3 for material 3,...), without the use of floating-point numbers. Thus, eventhough they show similar distribution on the figure above the same voxelized phantoms cannot be used for source and attenuation definition.
+The voxelized attenuation phantom (**Jaszczak_238x237x134_Atn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water except the rod/sphere regions) and 0 outside, respectively. It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB). The attenuation phantom cannot make use of any interpolation counter to the activity phantom as it must strictly represent materials as binary values (0 for material 1, 1 for material 2, 3 for material 3,...), without the use of floating-point numbers. Thus, eventhough they show similar distribution on the figure above the same voxelized phantoms cannot be used for source and attenuation definition.
 
 ## 4.2 Usage in GATE
 
@@ -183,6 +182,64 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
 /gate/VoxAttn/geometry/setImage Jaszczak_238x237x134_Atn.h33
+/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Jaszczak_Range.dat
+/gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
+/gate/VoxAttn/attachPhantomSD
+```
+
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Derenzo_Range.dat'* file. For example, the following indices to materials conversion,
+```ruby
+2
+0 0 Air
+1 1 Water
+```
+
+# 5. Jaszczak Phantom with fillable rods and spheres
+
+## 5.1 Description
+
+We provide the fillable Jaszczak attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The fillable Jaszczak phantom can be used to estimate tomographic uniformity, contrast, and spatial resolution in SPECT and PET. Counter to the regular Jaszczak phantom described in the section 4 above, it simulates spheres and rods filled with activity (instead of cold).
+
+<p align="center">
+<img width="904" alt="Screen Shot 2023-06-06 at 5 49 48 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3b0bfd85-8cb8-4edd-90da-499c29247dd1">
+</p>
+
+This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation](http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with hot spheres, and another **one** with **hot** rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
+
+The Jaszczak activity phantom can be simulated with (**Fillable_Jaszczak_238x237x134_with_bkg.i33**) and without (**Fillable_Jaszczak_238x237x134_without_bkg.i33**) background activity as being filled with uniform tracer activity in the rod, and sphere volumes. The integer values for the rods/spheres and cold regions are set to 10 and 0, respectively. The background value is 0 (no activity) or 1 (activity). It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB).
+  
+The voxelized attenuation phantom (**Fillable_Jaszczak_238x237x134_Atn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water) and 0 outside, respectively. It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB). The attenuation phantom cannot make use of any interpolation counter to the activity phantom as it must strictly represent materials as binary values (0 for material 1, 1 for material 2, 3 for material 3,...), without the use of floating-point numbers. Thus, eventhough they show similar distribution on the figure above the same voxelized phantoms cannot be used for source and attenuation definition.
+
+## 5.2 Usage in GATE
+
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
+```ruby
+/gate/source/addSource VoxSource voxel
+/gate/source/VoxSource/reader/insert image
+/gate/source/VoxSource/imageReader/translator/insert linear
+/gate/source/VoxSource/imageReader/linearTranslator/setScale 0.03 Bq
+/gate/source/VoxSource/imageReader/readFile PATH_TO/Fillable_Jaszczak_238x237x134_with_bkg.h33
+/gate/source/VoxSource/imageReader/readFile PATH_TO/Fillable_Jaszczak_238x237x134_without_bkg.h33 #w/o background
+/gate/source/VoxSource/imageReader/verbose 1
+/gate/source/VoxSource/gps/particle gamma
+/gate/source/VoxSource/gps/ang/type iso
+/gate/source/VoxSource/gps/ang/mintheta 0.0 deg
+/gate/source/VoxSource/gps/ang/maxtheta 180.0 deg
+/gate/source/VoxSource/gps/ang/minphi 0.0  deg
+/gate/source/VoxSource/gps/ang/maxphi 360.0 deg
+/gate/source/VoxSource/gps/energytype Mono
+/gate/source/VoxSource/gps/ene/mono 140.5 keV # For Tc-99m
+/gate/source/VoxSource/setIntensity 1
+/gate/source/VoxSource/setPosition -223.589814 -222.650361 -167.5 mm
+/gate/source/VoxSource/dump 1
+```
+The default position of the voxelized source is in the 1<sup>st</sup> quarter, so the voxelized source has to be shifted over half its dimension in the negative direction on each axis. As the voxel size is 1 mm<sup>3</sup>, dimensions of the image (*provided in the file name*) need to be divided by two along X, Y, Z dimensions.
+
+The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+```ruby
+/gate/world/daughters/name VoxAttn
+/gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
+/gate/VoxAttn/geometry/setImage Fillable_Jaszczak_238x237x134_Atn.h33
 /gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Jaszczak_Range.dat
 /gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
 /gate/VoxAttn/attachPhantomSD

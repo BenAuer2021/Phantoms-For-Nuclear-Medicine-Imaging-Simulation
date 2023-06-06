@@ -150,9 +150,9 @@ We provide the Jaszczak attenuation and activity voxelized phantoms in interfile
 This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation]
 (http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with cold spheres, and another one with cold rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
 
-The Jaszczak activity phantom (**Jaszczak_238x237x134.i33**) can be simulated as being filled with uniform tracer activity. The integer values for the hot and cold regions are set to 10 and 0, respectively. It consists of 238x237x134 voxels of 1 mm<sup>3</sup> (size of 15.1 MB).
+The Jaszczak activity phantom (**Jaszczak_238x237x134.i33**) can be simulated as being filled with uniform tracer activity. The integer values for the hot and cold regions are set to 10 and 0, respectively. It consists of 23237x134 voxels of 1 mm<sup>3</sup> (size of 15.1 MB).
   
-The voxelized attenuation phantom (**Jaszczak_238x237x134_Atn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water except the rod/sphere regions) and 0 outside, respectively. It consists of 238x237x134 voxels of 1 mm<sup>3</sup> (size of 15.1 MB).
+The voxelized attenuation phantom (**Jaszczak_238x237x134_Atn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water except the rod/sphere regions) and 0 outside, respectively. It consists of 238x237x134 voxels of 1 mm<sup>3</sup> (size of 15.1 MB). The attenuation phantom cannot make use of any interpolation counter to the activity phantom as it must strictly represent materials as binary values (0 for material 1, 1 for material 2, 3 for material 3,...), without the use of floating-point numbers. Thus, eventhoug they show similar distruthe same voxelized phantoms 
 
 ## 4.2 Usage in GATE
 

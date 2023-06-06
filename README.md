@@ -28,7 +28,11 @@ The open-source **mesh50_XCAT** phantom based on the 4D extended cardiac-torso d
 
 We provide the Defrise attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The 20-cm diameter cylindrical Defrise phantom can be used to estimate axial sampling of nuclear medicine imaging systems. It is based on the [Defrise Insert<sup>TM<sup> Model ECT/DEF/I](https://www.spect.com/wp-content/uploads/2020/06/Micro-Defrise-Phantom.pdf) from Data Spectrum Corporation, Durham, NC, USA. 
 
-The 20-cm long Defrise phantom consists of a series of 12 20-cm diameter cold disks, and 13 hot gaps. The 8-mm disks are spaced equally 8 mm apart. The Defrise activity phantom (**Defrise_200x200x200.i33**) can be simulated as to be filled by uniform tracer activity. The integer values for the hot and cold disk are set to 10 and 0, respectively. It is for a voxel size of 1 mm<sup>3</sup>. It consists of 200x200x200 voxels 1 mm<sup>3</sup> (size of 16 MB).
+The 20-cm long Defrise phantom consists of a series of 12 cold disks, and 13 hot gaps. The 8-mm long disks are 20 cm in diameter and spaced equally 8 mm apart. The Defrise activity phantom (**Defrise_200x200x200.i33**) can be simulated as to be filled by uniform tracer activity. 
+
+The disks in the 20-cm long Defrise phantom, measuring 8 mm in length, have a diameter of 20 cm and are evenly spaced 8 mm apart. The Defrise activity phantom (**Defrise_200x200x200.i33**) can be represented as being filled with uniform tracer activity throughout the volume of the hot disks.
+
+The integer values for the hot and cold disk are set to 10 and 0, respectively. It is for a voxel size of 1 mm<sup>3</sup>. It consists of 200x200x200 voxels 1 mm<sup>3</sup> (size of 16 MB).
   
 The voxelized phantoms can be used in attenuation correction for SPECT or PET reconstruction or as attenuation media or activity sources for GATE simulation.
 

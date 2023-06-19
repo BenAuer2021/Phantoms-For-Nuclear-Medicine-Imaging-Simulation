@@ -336,7 +336,7 @@ A screenshot of the attenuation file is shown below:
 
 ![LuP15_attn_full](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/ce97cbf1-4faa-405e-abcf-20e1d86698ba)
 
-Two images of the source phantom overlaid on the attenuation model is shown below. The top image shows the liverm kidneys and spleen and the bottom shows two of the tumours: 
+Two transaxial slices of the source phantom (pink) overlaid on the attenuation model (blue) are shown below. The top image shows the liver, kidneys and spleen and the bottom shows two of the tumours: 
 ![LuP15_src_full](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/7694440e-dee4-488b-8d4b-ef15b69bf9c9)
 ![LuP15_src_full_tumours](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/5aa4f593-9731-44ce-8b2b-94d398eae0c3)
 

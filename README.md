@@ -321,7 +321,147 @@ Indices in the voxelized attenuation image are translated into materials via the
 1 1 Water
 ```
 
+## 7 <sup>177</sup>Lu-DOTATATE patient data 
+
+### 7.1 Description 
+
+We provide the attenuation and activity voxelized phantoms for a patient therapy with  <sup>177</sup>Lu-DOTATATE.  The files are in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The voxelised phantoms are based on a low-dose CT image of a female patient who underwent <sup>177</sup>Lu-DOTATATE therapy at the Christie NHS Foundation Trust, Manchester, UK. Registration and segmentation of the liver, spleen, both kidneys and three tumours was performed by Dr Emma Page at the Christie NHS Foundation Trust, Manchester, UK. The images are for a single bed position. The patient bed has also been manually segmented to permit its material to be specified in GATE. 
+
+Both the attenuation and activity voxelised phantoms are of size 108x70x90. The pixel size is 3.9063 mm and the slice thickness is  4.4196 mm.  <br />
+
+The attenuation model: patient15_LuDOTATATE_attn.i33 <br />
+The source model: patient15_LuDOTATATE_src.i33
+
+A screenshot of the attenuation file is shown below: 
+
+![LuP15_attn_full](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/ce97cbf1-4faa-405e-abcf-20e1d86698ba)
+
+Two images of the source phantom overlaid on the attenuation model is shown below. The top image shows the liverm kidneys and spleen and the bottom shows two of the tumours: 
+![LuP15_src_full](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/7694440e-dee4-488b-8d4b-ef15b69bf9c9)
+![LuP15_src_full_tumours](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/5aa4f593-9731-44ce-8b2b-94d398eae0c3)
 
 
+### 7.2 Usage in GATE
+
+As shown in Section 6.2, the  voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+```ruby
+/gate/world/daughters/name VoxAttn
+/gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
+/gate/VoxAttn/geometry/setImage patient15_LuDOTATATE_attn.h33
+/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_LuPatient_Range.dat
+/gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
+/gate/VoxAttn/attachPhantomSD
+```
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_LuPatient_Range.dat'* file. Since this phantom is based on a low-dose CT, very specific material definition for different organs is not possible. The following indices to materials conversion was used
+
+```ruby
+-2000 100 Air
+100 220 CompressedAir
+220 500 Lung
+500 950 AdiposeTissue
+950 1000 Muscle
+1000 1150 SoftTissue
+1120 2150 Bone
+3000 3050 CarbonFiber
+```
+The first and second column state the range of voxel values in the attenuation image which correspond to the given material. The thirs column must match the name of a material defined in your materials.dB file. Tissue densities and compositions can be found in (for example) the supplemental matieral of ICRP Publication 110. 
 
 
+The source image allows specific activities to be defined separately for the liver, spleen, left and right kidneys and the three tumours. The source model defines the following values: 
+|     Region        |     Voxel value    |     Number   of source voxels    |
+|-------------------|--------------------|----------------------------------|
+|     Liver         |     15000          |     15381                        |
+|     Spleen        |     16000          |     1535                         |
+|     L   Kidney    |     17000          |     2052                         |
+|     R   Kidney    |     18000          |     2493                         |
+|     Tumour1       |     19000          |     93                           |
+|     Tumour2       |     20000          |     55                           |
+|     Tumour3       |     21000          |     90                           |
+
+The following example shows how to define a source of <sup>177</sup>Lu gammas for each region. The gamma emission dats is from the IAEA database: https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html.
+Note that this example shows the gamma emissions only,  so the simulation output will be missing the X-ray peaks and Bremsstrahlung from the betas seen in true <sup>177</sup>Lu spectra. 
+
+`VS_gamma` is the name of the voxelised gamma source 
+```ruby
+
+#  Voxelised gamma source of 177Lu
+#  For 1MBq of 17Lu,
+#  Gamma activity = 0.172688 MBq (scale activity file accordingly)
+
+# Add new voxelised source
+/gate/source/addSource VS_gamma voxel
+/gate/source/VS_gamma/reader/insert image
+/gate/source/VS_gamma/imageReader/translator/insert range
+/gate/source/VS_gamma/imageReader/rangeTranslator/readTable patient15_activity_235MBq.dat
+/gate/source/VS_gamma/imageReader/rangeTranslator/describe 1
+/gate/source/VS_gamma/imageReader/readFile patient15_LuDOTATATE_src.h33
+
+# THE DEFAULT POSITION OF THE VOXELIZED SOURCE IS IN THE 1ST QUARTER
+# SO THE VOXELIZED SOURCE HAS TO BE SHIFTED OVER HALF ITS DIMENSION IN THE NEGATIVE DIRECTION ON EACH AXIS
+/gate/source/VS_gamma/setPosition -210.9402 -136.7205 -198.882 mm
+
+# Attach to voxel phantom
+/gate/source/VS_gamma/attachTo voxelPhantom
+
+/gate/source/VS_gamma/gps/ang/type iso
+
+# Set verbosity (2 = every event)
+# Good to set to 2 initially to check output is as expected
+/gate/source/VS_gamma/gps/verbose 0
+
+# Force unstable
+/gate/source/VS_gamma/setForcedUnstableFlag  true
+# Half life is 6.647 days
+/gate/source/VS_gamma/setForcedHalfLife 574067.52 s
+
+/gate/source/VS_gamma/gps/particle    gamma
+/gate/source/VS_gamma/gps/ene/type  User
+/gate/source/VS_gamma/gps/hist/type    energy
+
+/gate/source/VS_gamma/gps/ene/min    0.0716419 MeV
+/gate/source/VS_gamma/gps/ene/max    0.321315901 MeV
+
+# ------------------hist of emissions----------------------------- #
+/gate/source/VS_gamma/gps/hist/point 0.0716419999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.071642 0.164
+/gate/source/VS_gamma/gps/hist/point 0.0716420001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.1129497999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.1129498 6.23
+/gate/source/VS_gamma/gps/hist/point 0.11294980001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.1367244999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.1367245     0.0465
+/gate/source/VS_gamma/gps/hist/point 0.13672450001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.2083661999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.2083662     10.41
+/gate/source/VS_gamma/gps/hist/point 0.20836620001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.2496741999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.2496742     0.1997
+/gate/source/VS_gamma/gps/hist/point 0.24967420001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.3213158999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.3213159     0.2186
+/gate/source/VS_gamma/gps/hist/point 0.3213159001 0.0
+###################################################
+
+/gate/source/list
+/gate/source/VS_gamma/dump 1
+
+```
+The file `patient15_activity_235MBq.dat` permits the definition of activity in each region of the source image, based on its voxel values. 
+The following example sets a total activity of 235 MBq in the phantom.
+
+``` ruby
+7
+15000.0 15000.0 1167.645
+16000.0 16000.0 3847.511
+17000.0 17000.0 2625.665
+18000.0 18000.0 2576.813
+19000.0 19000.0 28595.65
+20000.0 20000.0 25746.21
+21000.0 21000.0 9210.026667
+```
+The first row specifies the number of active regions we want to set. The following rows specify a voxel range to set to an activity (Bq/voxel). For example, here we have 3847.511 Bq/voxel in the spleen which has 1535 source voxels. Therefore we define a total gamma activity of 5.91 MBq. Note that <sup>177</sup>Lu has a total gamma decay branching ratio of  0.172688, so this corresponds to a total activity of <sup>177</sup>Lu  of 34.2 MBq. 

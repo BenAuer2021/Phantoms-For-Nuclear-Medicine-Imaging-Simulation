@@ -401,7 +401,7 @@ Note that this example shows the gamma emissions only,  so the simulation output
 /gate/source/VS_gamma/setPosition -210.9402 -136.7205 -198.882 mm
 
 # Attach to voxel phantom
-/gate/source/VS_gamma/attachTo voxelPhantom
+/gate/source/VS_gamma/attachTo VoxAttn
 
 /gate/source/VS_gamma/gps/ang/type iso
 

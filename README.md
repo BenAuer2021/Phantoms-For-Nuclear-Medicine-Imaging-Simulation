@@ -352,6 +352,10 @@ As shown in Section 6.2, the  voxelized attenuation phantom can be used as atten
 /gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
 /gate/VoxAttn/attachPhantomSD
 ```
+
+The header file `patient15_LuDOTATATE_attn.h33` must follow a specific format. Note that the line `!name of data file := ./PathTo/patient15_LuDOTATATE_attn.i33` must specify the path to the .i33 file **relative to the GATE macro** and not relative to the header file.  
+
+
 Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_LuPatient_Range.dat'* file. Since this phantom is based on a low-dose CT, very specific material definition for different organs is not possible. The following indices to materials conversion was used
 
 ```ruby

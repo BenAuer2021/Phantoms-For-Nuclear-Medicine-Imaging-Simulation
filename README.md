@@ -332,7 +332,7 @@ Both the attenuation and activity voxelised phantoms are of size 108x70x90. The 
 The attenuation model: patient15_LuDOTATATE_attn.i33 <br />
 The source model: patient15_LuDOTATATE_src.i33
 
-A screenshot of the attenuation file is shown below: 
+GATE applies a flip in the y-axis, so these phantoms have already been flipped to correct for that. A screenshot of the attenuation file (re-oriented) is shown below: 
 
 ![LuP15_attn_full](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/ce97cbf1-4faa-405e-abcf-20e1d86698ba)
 

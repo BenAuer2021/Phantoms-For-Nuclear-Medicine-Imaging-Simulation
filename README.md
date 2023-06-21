@@ -263,10 +263,8 @@ For additional information, please see below references,
 > - C Lindsay, B Auer, Y Yang, LR Furenlid, and and MA King (2018, November). Creation of a population of patient phantoms for deep learning-based denoising of spect brain imaging. In 2019, 7th International Workshop on Computational Human Phantoms.
 
 <p align="center">
-<img width="904" alt="Screen Shot 2023-06-06 at 5 49 48 PM" src="[https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3b0bfd85-8cb8-4edd-90da-499c29247dd1](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/ea6cff2a-dde4-4981-9bf4-756c683b17b3)">
+<img width="904" alt="Screen Shot 2023-06-20 at 10 30 44 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/bb023529-29d9-46a6-a316-eef84978e910">
 </p>
-
-https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/ea6cff2a-dde4-4981-9bf4-756c683b17b3
 
 The Jaszczak activity phantom can be simulated with (**Fillable_Jaszczak_238x237x134_with_bkg.i33**) and without (**Fillable_Jaszczak_238x237x134_without_bkg.i33**) background activity as being filled with uniform tracer activity in the rod, and sphere volumes. The integer values for the rods/spheres and cold regions are set to 10 and 0, respectively. The background value is 0 (no activity) or 1 (activity). It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB).
 

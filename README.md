@@ -28,7 +28,7 @@ Table of contents:
 - 8. Brain Tumor/GlioBlastoma
   - 8.1 Description
   - 8.2 Usage in GATE  
-- 9. <sup>177</sup>Lu-DOTATATE patient data
+- 9. Lu-177 DOTATATE patient data
   - 9.1 Description
   - 9.2 Usage in GATE    
 ```

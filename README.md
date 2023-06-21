@@ -1,18 +1,36 @@
 # **Phantoms-For-Nuclear-Medicine-Imaging-Application**
 
-The different digitial phantoms for medical imaging application are developed and maintained by Auer Benjamin from the Brigham and Women's Hospital and Harvard Medical School, Boston, MA, USA.
+The different digitial phantoms for medical imaging application are developed and maintained by Auer Benjamin from the Brigham and Women's Hospital and Harvard Medical School, Boston, MA, USA, and Pells Sophia from the University of Massachussets Chan Medical School, Worcester, MA, USA.
 
-**Contacts:** bauer@bwh.harvard.edu
+**Contacts:** Auer, Benjamin Ph.D <bauer@bwh.harvard.edu> and Pells, Sophia Ph.D <Sophia.Pells@umassmed.edu>
 
 Table of contents:
 ```diff
-- 1. Objective and Background
-- 2. Description
-  - 2.1 STL-based phantoms (mesh50_XCAT)
-  - 2.2 Voxelized version of the STL-based phantoms
-- 3. Usage in GATE
-  - 3.1 STL-based phantoms (mesh50_XCAT)
-  - 3.2 Voxelized version of the STL-based phantoms 
+- 1. Objective
+- 2. Defrise Phantom
+  - 2.1 Description
+  - 2.2 Usage in GATE
+- 3. Derenzo Phantom
+  - 3.1 Description
+  - 3.2 Usage in GATE
+- 4. Jaszczak Phantom
+  - 4.1 Description
+  - 4.2 Usage in GATE
+- 5. Jaszczak Phantom with fillable rods and spheres
+  - 5.1 Description
+  - 5.2 Usage in GATE
+- 6. Brain Perfusion
+  - 6.1 Description
+  - 6.2 Usage in GATE  
+- 7. Brain Dopamine DaT
+  - 7.1 Description
+  - 7.2 Usage in GATE 
+- 8. Brain Tumor/GlioBlastoma
+  - 8.1 Description
+  - 8.2 Usage in GATE  
+- 9. <sup>177</sup>Lu-DOTATATE patient data
+  - 9.1 Description
+  - 9.2 Usage in GATE    
 ```
 
 # 1. Objective
@@ -201,7 +219,7 @@ Indices in the voxelized attenuation image are translated into materials via the
 We provide the fillable Jaszczak attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The fillable Jaszczak phantom can be used to estimate tomographic uniformity, contrast, and spatial resolution in SPECT and PET. Counter to the regular Jaszczak phantom described in the section 4 above, it simulates spheres and rods filled with activity (instead of cold).
 
 <p align="center">
-<img width="904" alt="Screen Shot 2023-06-06 at 5 49 48 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3b0bfd85-8cb8-4edd-90da-499c29247dd1">
+<img width="700" alt="Screen Shot 2023-06-06 at 5 49 48 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3b0bfd85-8cb8-4edd-90da-499c29247dd1">
 </p>
 
 This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation](http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with hot spheres, and another **one** with **hot** rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
@@ -264,7 +282,7 @@ For additional information, please see below references,
 > - C Lindsay, B Auer, Y Yang, LR Furenlid, and and MA King (2018, November). Creation of a population of patient phantoms for deep learning-based denoising of spect brain imaging. In 2019, 7th International Workshop on Computational Human Phantoms.
 
 <p align="center">
-<img width="904" alt="Screen Shot 2023-06-20 at 10 44 55 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/f5e26af5-a280-4526-bd11-482d4af3d34a">
+<img width="700" alt="Screen Shot 2023-06-20 at 10 44 55 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/f5e26af5-a280-4526-bd11-482d4af3d34a">
 </p>
 
 The brain perfusion activity phantom can be simulated  (**Brain_Perfusion_Source_120x120x120.i33**) as being filled with uniform tracer activity in striatum:grey matter:white matter : lungs : liver : background of 10.1:9.3:2.3:6.0:11.4:1. The integer values are set to 10 for the soft tissue, 100 for the skin, 230 for the white matter, 920 for the grey matter, and 1012 for the striatum. It consists of 120x120x120 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 3.5 MB).
@@ -543,7 +561,7 @@ For additional information, please see below references,
 > - C Lindsay, B Auer, Y Yang, LR Furenlid, and and MA King (2018, November). Creation of a population of patient phantoms for deep learning-based denoising of spect brain imaging. In 2019, 7th International Workshop on Computational Human Phantoms.
 
 <p align="center">
-<img width="904" alt="Screen Shot 2023-06-20 at 11 18 11 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/7af618e5-6fb0-465c-8534-e6408c5f4214">
+<img width="700" alt="Screen Shot 2023-06-20 at 11 18 11 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/7af618e5-6fb0-465c-8534-e6408c5f4214">
 </p>
 
 The brain DaT activity phantom can be simulated (**DaT_Source_120x120x120.i33**) as being filled with uniform tracer activity in striatum:background of 8:1. The integer values are set to 10 for the background and 800 for the striatum. It consists of 120x120x120 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 3.5 MB).
@@ -816,14 +834,14 @@ For additional information, please see below references,
 > - Auer B, Kalluri KS, Abayazeed A et al. 2020. [Aperture size selection for improved brain tumor detection and quantification in multi-pinhole 123I-CLINDE SPECT imaging](https://ieeexplore.ieee.org/abstract/document/9508019). In 2020 IEEE Nuclear Science Symposium and Medical Imaging Conference (NSS/MIC) (pp. 1-2).
 
 <p align="center">
-<img width="904" alt="Screen Shot 2023-06-20 at 11 43 32 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/11c2437c-2e83-4222-b93e-a77b78751434">
+<img width="700" alt="Screen Shot 2023-06-20 at 11 43 32 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/11c2437c-2e83-4222-b93e-a77b78751434">
 </p>
 
 The brain glioblastoma activity phantom can be simulated (**Glioblastoma_Source_92x102x65.i33**) as being filled with uniform tracer activity in tumor:background of 3:1. The integer values are set to 1 for the background and 3 for the non-enhancing and MR-enhancing tumor volumes. Necrosis and Edema volumes uptake were set to 0.  It consists of 92x102x65 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 1.2 MB).
   
 The voxelized attenuation phantom (**Glioblastoma_Attn_92x102x65.i33**) can be used for attenuation correction for SPECT reconstruction and/or as attenuation media for simulation. The integer values are set to 0 for the air, 1 for the head. It consists of 92x102x65 voxels of 2x2x2 mm<sup>3</sup> (size of 1.2 MB). The air volume surrounding the head was reduced to the maximum to avoid overlap with the system components in GATE or any other simulation software.
 
-## 7.2 Usage in GATE
+## 8.2 Usage in GATE
 
 The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
 ```ruby
@@ -970,10 +988,9 @@ Indices in the voxelized attenuation image are translated into materials via the
 1 1 TissueSoft
 ```
 
+## 9 <sup>177</sup>Lu-DOTATATE patient data 
 
-## 7 <sup>177</sup>Lu-DOTATATE patient data 
-
-### 7.1 Description 
+### 9.1 Description 
 
 We provide the attenuation and activity voxelized phantoms for a patient therapy with  <sup>177</sup>Lu-DOTATATE.  The files are in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The voxelised phantoms are based on a low-dose CT image of a female patient who underwent <sup>177</sup>Lu-DOTATATE therapy at the Christie NHS Foundation Trust, Manchester, UK. Registration and segmentation of the liver, spleen, both kidneys and three tumours was performed by Dr Emma Page at the Christie NHS Foundation Trust, Manchester, UK. The images are for a single bed position. The patient bed has also been manually segmented to permit its material to be specified in GATE. 
 
@@ -991,7 +1008,7 @@ Two transaxial slices of the source phantom (pink) overlaid on the attenuation m
 ![LuP15_src_full_tumours](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/5aa4f593-9731-44ce-8b2b-94d398eae0c3)
 
 
-### 7.2 Usage in GATE
+### 9.2 Usage in GATE
 
 As shown in Section 6.2, the  voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
 ```ruby
@@ -1072,7 +1089,7 @@ Note that this example shows the gamma emissions only,  so the simulation output
 /gate/source/VS_gamma/gps/ene/type  User
 /gate/source/VS_gamma/gps/hist/type    energy
 
-/gate/source/VS_gamma/gps/ene/min    0.0716419 MeV
+/gate/source/VS_gamma/gps/ene/min    0.07 MeV
 /gate/source/VS_gamma/gps/ene/max    0.321315901 MeV
 
 # ------------------hist of emissions----------------------------- #

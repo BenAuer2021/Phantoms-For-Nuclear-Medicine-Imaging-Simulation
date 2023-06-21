@@ -187,7 +187,7 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/VoxAttn/attachPhantomSD
 ```
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Derenzo_Range.dat'* file. For example, the following indices to materials conversion,
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Jaszczak_Range.dat'* file. For example, the following indices to materials conversion,
 ```ruby
 2
 0 0 Air
@@ -245,7 +245,7 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/VoxAttn/attachPhantomSD
 ```
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Derenzo_Range.dat'* file. For example, the following indices to materials conversion,
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Jaszczak_Range.dat'* file. For example, the following indices to materials conversion,
 ```ruby
 2
 0 0 Air
@@ -271,7 +271,8 @@ The brain perfusion activity phantom can be simulated  (**Brain_Perfusion_Source
   
 The voxelized attenuation phantom (**Brain_Perfusion_Attn_72x90x77.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 0 for the air, 1 for the skull, 2 for the soft tissue, and 3 for the brain. It consists of 72x90x77 voxels of 2x2x2 mm<sup>3</sup> (size of 998 kB). The air volume surrounding the head was reduced to the maximum to avoid overlap with the system components in GATE or any other simulation software. The attenuation phantom cannot make use of any interpolation counter to the activity phantom as it must strictly represent materials as binary values (0 for material 1, 1 for material 2, 3 for material 3,...), without the use of floating-point numbers. Thus, eventhough they show similar distribution on the figure above the same voxelized phantoms cannot be used for source and attenuation definition.
 
-## 6.2 Usage in GATE
+<a name="SourceI123"></a>
+## [6.2 Usage in GATE](#SourceI123)
 
 The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
 ```ruby
@@ -317,7 +318,6 @@ Note that this example shows the gamma emissions only, so the simulation output 
 
 # Force unstable
 /gate/source/VS_gamma/setForcedUnstableFlag  true
-# Half life is 6.647 days
 /gate/source/VS_gamma/setForcedHalfLife 47602.8 s
 
 /gate/source/VS_gamma/gps/particle    gamma
@@ -523,7 +523,7 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/VoxAttn/attachPhantomSD
 ```
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Derenzo_Range.dat'* file. For example, the following indices to materials conversion,
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Brain_Range.dat'* file. For example, the following indices to materials conversion,
 ```ruby
 4
 0 0 Air
@@ -593,7 +593,6 @@ Note that this example shows the gamma emissions only, so the simulation output 
 
 # Force unstable
 /gate/source/VS_gamma/setForcedUnstableFlag  true
-# Half life is 6.647 days
 /gate/source/VS_gamma/setForcedHalfLife 47602.8 s
 
 /gate/source/VS_gamma/gps/particle    gamma
@@ -799,7 +798,7 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/VoxAttn/attachPhantomSD
 ```
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Derenzo_Range.dat'* file. For example, the following indices to materials conversion,
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Brain_Range.dat'* file. For example, the following indices to materials conversion,
 ```ruby
 4
 0 0 Air
@@ -807,6 +806,170 @@ Indices in the voxelized attenuation image are translated into materials via the
 2 2 TissueSoft
 3 3 Brain
 ```
+
+# 8. Brain Tumor/GlioBlastoma
+
+## 8.1 Description
+
+We provide the brain glioblastoma attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The brain glioblastoma phantom can emulate a clinical <sup>123I</sup>CLINDE or <sup>131I</sup> brain tumor distribution. It was derived from the benchmark data of the [Bratumia segmentation software](http://mia-software.artorg.unibe.ch/BraTumIA/).
+For additional information, please see below references,
+> - Auer B, Kalluri KS, Abayazeed A et al. 2020. [Aperture size selection for improved brain tumor detection and quantification in multi-pinhole 123I-CLINDE SPECT imaging](https://ieeexplore.ieee.org/abstract/document/9508019). In 2020 IEEE Nuclear Science Symposium and Medical Imaging Conference (NSS/MIC) (pp. 1-2).
+
+<p align="center">
+<img width="904" alt="Screen Shot 2023-06-20 at 11 43 32 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/11c2437c-2e83-4222-b93e-a77b78751434">
+</p>
+
+The brain glioblastoma activity phantom can be simulated (**Glioblastoma_Source_92x102x65.i33**) as being filled with uniform tracer activity in tumor:background of 3:1. The integer values are set to 1 for the background and 3 for the non-enhancing and MR-enhancing tumor volumes. Necrosis and Edema volumes uptake were set to 0.  It consists of 92x102x65 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 1.2 MB).
+  
+The voxelized attenuation phantom (**Glioblastoma_Attn_92x102x65.i33**) can be used for attenuation correction for SPECT reconstruction and/or as attenuation media for simulation. The integer values are set to 0 for the air, 1 for the head. It consists of 92x102x65 voxels of 2x2x2 mm<sup>3</sup> (size of 1.2 MB). The air volume surrounding the head was reduced to the maximum to avoid overlap with the system components in GATE or any other simulation software.
+
+## 7.2 Usage in GATE
+
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
+```ruby
+/gate/source/addSource VoxSource voxel
+/gate/source/VoxSource/reader/insert image
+/gate/source/VoxSource/imageReader/translator/insert linear
+/gate/source/VoxSource/imageReader/linearTranslator/setScale 0.03 Bq
+/gate/source/VoxSource/imageReader/readFile PATH_TO/Glioblastoma_Source_92x102x65.h33
+/gate/source/VoxSource/imageReader/verbose 1
+/gate/source/VoxSource/gps/particle gamma
+/gate/source/VoxSource/gps/ang/type iso
+/gate/source/VoxSource/gps/ang/mintheta 0.0 deg
+/gate/source/VoxSource/gps/ang/maxtheta 180.0 deg
+/gate/source/VoxSource/gps/ang/minphi 0.0  deg
+/gate/source/VoxSource/gps/ang/maxphi 360.0 deg
+/gate/source/VoxSource/gps/energytype Mono
+/gate/source/VoxSource/gps/ene/mono 159.0 keV # For I-123 primary emission
+/gate/source/VoxSource/gps/ene/mono 364.0 keV # For I-131 primary emission
+/gate/source/VoxSource/setIntensity 1
+/gate/source/VoxSource/setPosition -92.0 -102.0 -65.0 mm
+/gate/source/VoxSource/dump 1
+```
+An example of a complete source of <sup>123</sup>I gammas consisting of all the gammas emissions can be found in the [previous section](SourceI123). The following example shows how to define a source of <sup>131</sup>I gammas. The gamma emission data is from the IAEA database: https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html. Note that this example shows the gamma emissions only, so the simulation output will be missing the X-ray peaks or beta emissions seen in true <sup>131</sup>I energy spectra. 
+
+`VS_gamma` is the name of the voxelised gamma source 
+```ruby
+# Set verbosity (2 = every event)
+# Good to set to 2 initially to check output is as expected
+/gate/source/VS_gamma/gps/verbose 0
+
+/gate/source/addSource VS_gamma voxel
+/gate/source/VS_gamma/reader/insert image
+/gate/source/VS_gamma/imageReader/translator/insert linear
+/gate/source/VS_gamma/imageReader/linearTranslator/setScale 0.05 Bq
+/gate/source/VS_gamma/imageReader/readFile PATH_TO/Glioblastoma_Attn_92x102x65.h33
+/gate/source/VS_gamma/imageReader/verbose 1
+/gate/source/VS_gamma/gps/particle gamma
+/gate/source/VS_gamma/gps/ang/type iso
+/gate/source/VS_gamma/setPosition -92.0 -102.0 -65.0 mm
+
+# Force unstable
+/gate/source/VS_gamma/setForcedUnstableFlag  true
+/gate/source/VS_gamma/setForcedHalfLife 692988 s
+
+/gate/source/VS_gamma/gps/particle    gamma
+/gate/source/VS_gamma/gps/ene/type  User
+/gate/source/VS_gamma/gps/hist/type    energy
+
+/gate/source/VS_gamma/gps/ene/min    0.08 MeV
+/gate/source/VS_gamma/gps/ene/max    0.636989 MeV
+
+ # ---------------------------------------------------- #
+/gate/source/VS_gamma/gps/hist/point 0.080175 0.0
+/gate/source/VS_gamma/gps/hist/point 0.080185 2.61615
+/gate/source/VS_gamma/gps/hist/point 0.080195 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.08589 0.0
+/gate/source/VS_gamma/gps/hist/point 0.0859 8.965e-05
+/gate/source/VS_gamma/gps/hist/point 0.08591 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.16392 0.0
+/gate/source/VS_gamma/gps/hist/point 0.16393 0.0211085
+/gate/source/VS_gamma/gps/hist/point 0.16394 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.177204 0.0
+/gate/source/VS_gamma/gps/hist/point 0.177214 0.26895
+/gate/source/VS_gamma/gps/hist/point 0.177224 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.23217 0.0
+/gate/source/VS_gamma/gps/hist/point 0.23218 0.0031785
+/gate/source/VS_gamma/gps/hist/point 0.23219 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.272488 0.0
+/gate/source/VS_gamma/gps/hist/point 0.272498 0.0576205
+/gate/source/VS_gamma/gps/hist/point 0.272508 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.284295 0.0
+/gate/source/VS_gamma/gps/hist/point 0.284305 6.12065
+/gate/source/VS_gamma/gps/hist/point 0.284315 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.29579 0.0
+/gate/source/VS_gamma/gps/hist/point 0.2958 0.001793
+/gate/source/VS_gamma/gps/hist/point 0.29581 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.30239 0.0
+/gate/source/VS_gamma/gps/hist/point 0.3024 0.004727
+/gate/source/VS_gamma/gps/hist/point 0.30241 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.318078 0.0
+/gate/source/VS_gamma/gps/hist/point 0.318088 0.077425
+/gate/source/VS_gamma/gps/hist/point 0.318098 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.324641 0.0
+/gate/source/VS_gamma/gps/hist/point 0.324651 0.02119
+/gate/source/VS_gamma/gps/hist/point 0.324661 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.325779 0.0
+/gate/source/VS_gamma/gps/hist/point 0.325789 0.273025
+/gate/source/VS_gamma/gps/hist/point 0.325799 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.35839 0.0
+/gate/source/VS_gamma/gps/hist/point 0.3584 0.0163
+/gate/source/VS_gamma/gps/hist/point 0.35841 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.364479 0.0
+/gate/source/VS_gamma/gps/hist/point 0.364489 81.5
+/gate/source/VS_gamma/gps/hist/point 0.364499 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.404804 0.0
+/gate/source/VS_gamma/gps/hist/point 0.404814 0.054605
+/gate/source/VS_gamma/gps/hist/point 0.404824 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.44959 0.0
+/gate/source/VS_gamma/gps/hist/point 0.4496 0.007335
+/gate/source/VS_gamma/gps/hist/point 0.44961 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.502994 0.0
+/gate/source/VS_gamma/gps/hist/point 0.503004 0.359415
+/gate/source/VS_gamma/gps/hist/point 0.503014 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.636979 0.0
+/gate/source/VS_gamma/gps/hist/point 0.636989 7.1557
+/gate/source/VS_gamma/gps/hist/point 0.636999 0.0
+###################################################
+
+/gate/source/list
+/gate/source/VS_gamma/dump 1
+
+```
+The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+```ruby
+/gate/world/daughters/name VoxAttn
+/gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
+/gate/VoxAttn/geometry/setImage Glioblastoma_Attn_92x102x65.h33
+/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Glioblastoma_Range.dat
+/gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
+/gate/VoxAttn/attachPhantomSD
+```
+
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Glioblastoma_Range.dat'* file. For example, the following indices to materials conversion,
+```ruby
+2
+0 0 Air
+1 1 TissueSoft
+```
+
 
 ## 7 <sup>177</sup>Lu-DOTATATE patient data 
 

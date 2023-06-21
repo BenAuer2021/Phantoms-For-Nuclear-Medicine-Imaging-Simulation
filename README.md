@@ -256,26 +256,21 @@ Indices in the voxelized attenuation image are translated into materials via the
 
 ## 6.1 Description
 
-We provide the brain perfusion attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The brain perfusion phantom can emulate a clinical <sup>99mTc</sup> ECD/HMPAO or <sup>123I</sup>-IMP brain perfusion distribution. It was derived from the [Oasis phantom library](https://www.oasis-brains.org).
+We provide the brain perfusion attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The brain perfusion phantom can emulate a clinical <sup>99mTc</sup> ECD/HMPAO or <sup>123I</sup>-IMP brain perfusion distribution as imaged 1h post injection. It was derived from the open-access [Oasis phantom library](https://www.oasis-brains.org).
+For additional information, please see below references,
+> - PJ LaMontagne, TLS Benzinger, JC Morris, S Keefe, R Hornbeck, C Xiong, E Grant, J Hassenstab, K Moulder, A Vlassenko, ME Raichle, C Cruchaga, and D Marcus (2019). [OASIS 3: Longitudinal Neuroimaging, Clinical, and Cognitive Dataset for Normal Aging and Alzheimer Disease]([https://iopscience.iop.org/article/10.1088/1361-6560/acbde2](https://www.medrxiv.org/content/10.1101/2019.12.13.19014902v1)), medRxiv.
 
-
-OASIS 3: Longitudinal Neuroimaging, Clinical, and Cognitive Dataset for Normal Aging and Alzheimer Disease, Pamela J LaMontagne, Tammie L.S.
-Benzinger , John C. Morris, Sarah Keefe, Russ Hornbeck, Chengjie Xiong , Elizabeth Grant, Jason Hassenstab , Krista Moulder , Andrei Vlassenko , Marcus E.
-Raichle , Carlos Cruchaga , Daniel Marcus, 2019. medRxiv . doi : 10.1101/2019.12.13.19014902
-
-C. Lindsay, B. Auer, Y. Yang, L. R. Furenlid, and M. A. King, “Creation of a population of patient phantoms for deep learning-based denoising of spect brain imaging,” 2019, 7th International Workshop on Computational Human Phantoms.
-
-A brain phantom with source distribution for the perfusion imaging agent 123I-IMP as imaged 1h post injection was simulated in GATE [8]–[10]. The highenergy photons from 123I producing down-scatter interaction were included in these simulations.
-
-fillable Jaszczak phantom can be used to estimate tomographic uniformity, contrast, and spatial resolution in SPECT and PET. Counter to the regular Jaszczak phantom described in the section 4 above, it simulates spheres and rods filled with activity (instead of cold).
+> - C Lindsay, B Auer, Y Yang, LR Furenlid, and and MA King (2018, November). Creation of a population of patient phantoms for deep learning-based denoising of spect brain imaging. In 2019, 7th International Workshop on Computational Human Phantoms.
 
 <p align="center">
-<img width="904" alt="Screen Shot 2023-06-06 at 5 49 48 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3b0bfd85-8cb8-4edd-90da-499c29247dd1">
+<img width="904" alt="Screen Shot 2023-06-06 at 5 49 48 PM" src="[https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3b0bfd85-8cb8-4edd-90da-499c29247dd1](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/ea6cff2a-dde4-4981-9bf4-756c683b17b3)">
 </p>
 
-This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation](http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with hot spheres, and another **one** with **hot** rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
+https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/ea6cff2a-dde4-4981-9bf4-756c683b17b3
 
 The Jaszczak activity phantom can be simulated with (**Fillable_Jaszczak_238x237x134_with_bkg.i33**) and without (**Fillable_Jaszczak_238x237x134_without_bkg.i33**) background activity as being filled with uniform tracer activity in the rod, and sphere volumes. The integer values for the rods/spheres and cold regions are set to 10 and 0, respectively. The background value is 0 (no activity) or 1 (activity). It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB).
+
+This results in activity concentration ratios for striatum:grey matter:white matter:lungs:liver:background of 10.1:9.3:2.3:6.0:11.4:1.
   
 The voxelized attenuation phantom (**Fillable_Jaszczak_238x237x134_Atn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water) and 0 outside, respectively. It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB). The attenuation phantom cannot make use of any interpolation counter to the activity phantom as it must strictly represent materials as binary values (0 for material 1, 1 for material 2, 3 for material 3,...), without the use of floating-point numbers. Thus, eventhough they show similar distribution on the figure above the same voxelized phantoms cannot be used for source and attenuation definition.
 

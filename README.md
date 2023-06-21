@@ -266,11 +266,9 @@ For additional information, please see below references,
 <img width="904" alt="Screen Shot 2023-06-20 at 10 44 55 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/f5e26af5-a280-4526-bd11-482d4af3d34a">
 </p>
 
-The Jaszczak activity phantom can be simulated with (**Fillable_Jaszczak_238x237x134_with_bkg.i33**) and without (**Fillable_Jaszczak_238x237x134_without_bkg.i33**) background activity as being filled with uniform tracer activity in the rod, and sphere volumes. The integer values for the rods/spheres and cold regions are set to 10 and 0, respectively. The background value is 0 (no activity) or 1 (activity). It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB).
-
-This results in activity concentration ratios for striatum:grey matter:white matter:lungs:liver:background of 10.1:9.3:2.3:6.0:11.4:1.
+The brain perfusion activity phantom can be simulated  (**Brain_Perfusion_Source_120x120x120.i33**) as being filled with uniform tracer activity in striatum:grey matter:white matter : lungs : liver : background of 10.1:9.3:2.3:6.0:11.4:1. The integer values are set to 10 for the soft tissue, 100 for the skin, 230 for the white matter, 920 for the grey matter, and 1012 for the striatum. It consists of 120x120x120 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 3.5 MB).
   
-The voxelized attenuation phantom (**Fillable_Jaszczak_238x237x134_Atn.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 1 within the phantom (as entirely filled with water) and 0 outside, respectively. It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB). The attenuation phantom cannot make use of any interpolation counter to the activity phantom as it must strictly represent materials as binary values (0 for material 1, 1 for material 2, 3 for material 3,...), without the use of floating-point numbers. Thus, eventhough they show similar distribution on the figure above the same voxelized phantoms cannot be used for source and attenuation definition.
+The voxelized attenuation phantom (**Brain_Perfusion_Attn_72x90x77.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values are set to 0 for the air, 1 for the skull, 2 for the soft tissue, and 3 for the brain. It consists of 72x90x77 voxels of 2x2x2 mm<sup>3</sup> (size of 998 kB). The air volume surrounding the head was reduced to the maximum to avoid overlap with the system components in GATE or any other simulation software. The attenuation phantom cannot make use of any interpolation counter to the activity phantom as it must strictly represent materials as binary values (0 for material 1, 1 for material 2, 3 for material 3,...), without the use of floating-point numbers. Thus, eventhough they show similar distribution on the figure above the same voxelized phantoms cannot be used for source and attenuation definition.
 
 ## 6.2 Usage in GATE
 
@@ -280,8 +278,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/reader/insert image
 /gate/source/VoxSource/imageReader/translator/insert linear
 /gate/source/VoxSource/imageReader/linearTranslator/setScale 0.03 Bq
-/gate/source/VoxSource/imageReader/readFile PATH_TO/Fillable_Jaszczak_238x237x134_with_bkg.h33
-/gate/source/VoxSource/imageReader/readFile PATH_TO/Fillable_Jaszczak_238x237x134_without_bkg.h33 #w/o background
+/gate/source/VoxSource/imageReader/readFile PATH_TO/Brain_Perfusion_Source_120x120x120.h33
 /gate/source/VoxSource/imageReader/verbose 1
 /gate/source/VoxSource/gps/particle gamma
 /gate/source/VoxSource/gps/ang/type iso
@@ -291,28 +288,250 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/gps/ang/maxphi 360.0 deg
 /gate/source/VoxSource/gps/energytype Mono
 /gate/source/VoxSource/gps/ene/mono 140.5 keV # For Tc-99m
+/gate/source/VoxSource/gps/ene/mono 159.0 keV # For I-123 primary emission
 /gate/source/VoxSource/setIntensity 1
-/gate/source/VoxSource/setPosition -223.589814 -222.650361 -167.5 mm
+/gate/source/VoxSource/setPosition -120.0 -120.0 -120.0 mm
 /gate/source/VoxSource/dump 1
 ```
 The default position of the voxelized source is in the 1<sup>st</sup> quarter, so the voxelized source has to be shifted over half its dimension in the negative direction on each axis. As the voxel size is 1 mm<sup>3</sup>, dimensions of the image (*provided in the file name*) need to be divided by two along X, Y, Z dimensions.
 
+The following example shows how to define a source of <sup>123</sup>I gammas. The gamma emission data is from the IAEA database: https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html.
+Note that this example shows the gamma emissions only, so the simulation output will be missing the X-ray peaks seen in true <sup>123</sup>I spectra. 
+
+`VS_gamma` is the name of the voxelised gamma source 
+```ruby
+# Set verbosity (2 = every event)
+# Good to set to 2 initially to check output is as expected
+/gate/source/VS_gamma/gps/verbose 0
+
+/gate/source/addSource VS_gamma voxel
+/gate/source/VS_gamma/reader/insert image
+/gate/source/VS_gamma/imageReader/translator/insert linear
+/gate/source/VS_gamma/imageReader/linearTranslator/setScale 0.05 Bq
+/gate/source/VS_gamma/imageReader/readFile PATH_TO/Brain_Perfusion_Source_120x120x120.h33
+/gate/source/VS_gamma/imageReader/verbose 1
+/gate/source/VS_gamma/gps/particle gamma
+/gate/source/VS_gamma/gps/ang/type iso
+/gate/source/VS_gamma/setPosition -120.0 -120.0 -120.0 mm
+
+# Force unstable
+/gate/source/VS_gamma/setForcedUnstableFlag  true
+# Half life is 6.647 days
+/gate/source/VS_gamma/setForcedHalfLife 47602.8 s
+
+/gate/source/VS_gamma/gps/particle    gamma
+/gate/source/VS_gamma/gps/ene/type  User
+/gate/source/VS_gamma/gps/hist/type    energy
+
+/gate/source/VS_gamma/gps/ene/min  0.150 MeV
+/gate/source/VS_gamma/gps/ene/max  1.037 MeV
+
+# ------------------hist of emissions----------------------------- #
+/gate/source/VS_gamma/gps/hist/point 0.1589999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.159 83.6
+/gate/source/VS_gamma/gps/hist/point 0.1590001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.17419999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.1742 0.0008
+/gate/source/VS_gamma/gps/hist/point 0.1742001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.18261999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.18262 0.013
+/gate/source/VS_gamma/gps/hist/point 0.18262001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.19069999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.1907 0.0005
+/gate/source/VS_gamma/gps/hist/point 0.19070001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.19217999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.19218 0.0177
+/gate/source/VS_gamma/gps/hist/point 0.19218001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.1972299 0.0
+/gate/source/VS_gamma/gps/hist/point 0.19723 0.00033
+/gate/source/VS_gamma/gps/hist/point 0.19723001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.19822999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.19823 0.0033
+/gate/source/VS_gamma/gps/hist/point 0.19823001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.206799 0.0
+/gate/source/VS_gamma/gps/hist/point 0.2068 0.0033
+/gate/source/VS_gamma/gps/hist/point 0.2068001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.20779999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.2078 0.0011
+/gate/source/VS_gamma/gps/hist/point 0.2078001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.247969999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.24797 0.0693
+/gate/source/VS_gamma/gps/hist/point 0.247970001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.25750999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.25751 0.0015
+/gate/source/VS_gamma/gps/hist/point 0.257510001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.2589999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.259 0.0009
+/gate/source/VS_gamma/gps/hist/point 0.2590001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.27835999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.27836 0.0023
+/gate/source/VS_gamma/gps/hist/point 0.2783001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.28102999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.28103 0.072
+/gate/source/VS_gamma/gps/hist/point 0.28103001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.28531999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.28532 0.0043
+/gate/source/VS_gamma/gps/hist/point 0.28533001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.29518999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.29519 0.001588
+/gate/source/VS_gamma/gps/hist/point 0.29519001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.3293799 0.0
+/gate/source/VS_gamma/gps/hist/point 0.32938 0.0026
+/gate/source/VS_gamma/gps/hist/point 0.32938001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.33069999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.3307 0.0116
+/gate/source/VS_gamma/gps/hist/point 0.3307001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.34372999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.34373 0.0043
+/gate/source/VS_gamma/gps/hist/point 0.34373001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.34635999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.34636 0.12
+/gate/source/VS_gamma/gps/hist/point 0.34636001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.40501999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.40502 0.0027
+/gate/source/VS_gamma/gps/hist/point 0.40502001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.43749999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.4375 0.0008
+/gate/source/VS_gamma/gps/hist/point 0.43750001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.44001999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.44002 0.388
+/gate/source/VS_gamma/gps/hist/point 0.44002001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.45475999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.45476 0.0034
+/gate/source/VS_gamma/gps/hist/point 0.45476001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.50532999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.50533 0.288
+/gate/source/VS_gamma/gps/hist/point 0.50533001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.52896999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.52897 1.27
+/gate/source/VS_gamma/gps/hist/point 0.52897001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.53853999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.53854 0.31
+/gate/source/VS_gamma/gps/hist/point 0.53854001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.55604999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.55605 0.0025
+/gate/source/VS_gamma/gps/hist/point 0.55605001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.56278999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.56279 0.0009
+/gate/source/VS_gamma/gps/hist/point 0.56279001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.57399 0.0
+/gate/source/VS_gamma/gps/hist/point 0.574 0.005852
+/gate/source/VS_gamma/gps/hist/point 0.57401 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.57825999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.57826 0.0016
+/gate/source/VS_gamma/gps/hist/point 0.57826001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.59968999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.59969 0.0026
+/gate/source/VS_gamma/gps/hist/point 0.59969001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.61004999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.61005 0.0011
+/gate/source/VS_gamma/gps/hist/point 0.61005001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.62457999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.62458 0.078
+/gate/source/VS_gamma/gps/hist/point 0.62458001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.62825999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.62826 0.0016
+/gate/source/VS_gamma/gps/hist/point 0.62826001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.68793999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.68794 0.0268
+/gate/source/VS_gamma/gps/hist/point 0.68794001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.73586999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.73587 0.047
+/gate/source/VS_gamma/gps/hist/point 0.73587001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.76084999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.76085 0.00063
+/gate/source/VS_gamma/gps/hist/point 0.76085001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.78359999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.7836 0.053
+/gate/source/VS_gamma/gps/hist/point 0.7836001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.83709999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.8371 0.00047
+/gate/source/VS_gamma/gps/hist/point 0.8371001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.87751999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.87752 0.00072
+/gate/source/VS_gamma/gps/hist/point 0.87752001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.89479999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.8948 0.0007
+/gate/source/VS_gamma/gps/hist/point 0.89480001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.89819999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.8982 0.0006
+/gate/source/VS_gamma/gps/hist/point 0.8982001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 0.90911999 0.0
+/gate/source/VS_gamma/gps/hist/point 0.90912 0.0013
+/gate/source/VS_gamma/gps/hist/point 0.909120001 0.0
+
+/gate/source/VS_gamma/gps/hist/point 1.03662999 0.0
+/gate/source/VS_gamma/gps/hist/point 1.03663 0.00077
+/gate/source/VS_gamma/gps/hist/point 1.03663001 0.0
+###################################################
+
+/gate/source/list
+/gate/source/VS_gamma/dump 1
+
+```
 The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
 ```ruby
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
-/gate/VoxAttn/geometry/setImage Fillable_Jaszczak_238x237x134_Atn.h33
-/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Jaszczak_Range.dat
+/gate/VoxAttn/geometry/setImage Brain_Perfusion_Attn_72x90x77.h33
+/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_Brain_Range.dat
 /gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
 /gate/VoxAttn/attachPhantomSD
 ```
 
 Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Derenzo_Range.dat'* file. For example, the following indices to materials conversion,
 ```ruby
-2
+4
 0 0 Air
-1 1 Water
+1 1 Skull
+2 2 TissueSoft
+3 3 Brain
 ```
+
+
 
 ## 7 <sup>177</sup>Lu-DOTATATE patient data 
 
@@ -340,8 +559,8 @@ As shown in Section 6.2, the  voxelized attenuation phantom can be used as atten
 ```ruby
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
-/gate/VoxAttn/geometry/setImage patient15_LuDOTATATE_attn.h33
-/gate/VoxAttn/geometry/setRangeToMaterialFile Attenuation_LuPatient_Range.dat
+/gate/VoxAttn/geometry/setImage PATH_TO/patient15_LuDOTATATE_attn.h33
+/gate/VoxAttn/geometry/setRangeToMaterialFile PATH_TO/Attenuation_LuPatient_Range.dat
 /gate/VoxAttn/placement/setTranslation  0. 0. 0. cm
 /gate/VoxAttn/attachPhantomSD
 ```
@@ -389,7 +608,7 @@ Note that this example shows the gamma emissions only,  so the simulation output
 /gate/source/addSource VS_gamma voxel
 /gate/source/VS_gamma/reader/insert image
 /gate/source/VS_gamma/imageReader/translator/insert range
-/gate/source/VS_gamma/imageReader/rangeTranslator/readTable patient15_activity_235MBq.dat
+/gate/source/VS_gamma/imageReader/rangeTranslator/readTable PATH_TO/patient15_activity_235MBq.dat
 /gate/source/VS_gamma/imageReader/rangeTranslator/describe 1
 /gate/source/VS_gamma/imageReader/readFile patient15_LuDOTATATE_src.h33
 

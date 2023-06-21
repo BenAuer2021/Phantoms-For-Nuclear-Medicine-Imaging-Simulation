@@ -256,9 +256,9 @@ Indices in the voxelized attenuation image are translated into materials via the
 
 ## 6.1 Description
 
-We provide the brain perfusion attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The brain perfusion phantom can emulate a clinical 99mTc ECD/HMPAO or I123-IMP brain perfusion distribution.
+We provide the brain perfusion attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The brain perfusion phantom can emulate a clinical <sup>99mTc</sup> ECD/HMPAO or <sup>123I</sup>-IMP brain perfusion distribution. It was derived from the [Oasis phantom library](https://www.oasis-brains.org).
 
-https://www.oasis-brains.org
+
 OASIS 3: Longitudinal Neuroimaging, Clinical, and Cognitive Dataset for Normal Aging and Alzheimer Disease, Pamela J LaMontagne, Tammie L.S.
 Benzinger , John C. Morris, Sarah Keefe, Russ Hornbeck, Chengjie Xiong , Elizabeth Grant, Jason Hassenstab , Krista Moulder , Andrei Vlassenko , Marcus E.
 Raichle , Carlos Cruchaga , Daniel Marcus, 2019. medRxiv . doi : 10.1101/2019.12.13.19014902

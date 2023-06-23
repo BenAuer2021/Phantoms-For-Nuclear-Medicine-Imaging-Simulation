@@ -36,7 +36,7 @@ Table of contents:
 # 1. Objective
 
 ###### Objective
->The digital phantoms described and distributed below can be incorporated in simulation software, such as [GATE](http://www.opengatecollaboration.org) for emulating nuclear medicine acquisition. We provide a Defrise, Derenzo, and Jaszczak phantoms used in quality control procedures. Additionaly, we provide digital phantoms emulating clinical brain perfusion, dopamine transporter, and glioblastoma radiotracer distribution. 
+The digital phantoms described and distributed below can be incorporated in simulation software, such as [GATE](http://www.opengatecollaboration.org) for emulating nuclear medicine acquisition. We provide a Defrise, Derenzo, and Jaszczak phantoms used in quality control procedures. Additionaly, we provide digital phantoms emulating clinical brain perfusion, dopamine transporter, and glioblastoma radiotracer distribution. 
 
 The open-source **mesh50_XCAT** phantom based on the 4D extended cardiac-torso digital anthropomorphic ([XCAT](https://otc.duke.edu/industry-investors/available-technologies/xcat/)) human phantom can be downloaded [here](https://github.com/BenAuer2021/Mesh-based-Human-Phantom-for-Simulation/edit/main/README.md).
 
@@ -237,7 +237,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/imageReader/translator/insert linear
 /gate/source/VoxSource/imageReader/linearTranslator/setScale 0.03 Bq
 /gate/source/VoxSource/imageReader/readFile PATH_TO/Fillable_Jaszczak_238x237x134_with_bkg.h33
-/gate/source/VoxSource/imageReader/readFile PATH_TO/Fillable_Jaszczak_238x237x134_without_bkg.h33 #w/o background
+#/gate/source/VoxSource/imageReader/readFile PATH_TO/Fillable_Jaszczak_238x237x134_without_bkg.h33 #w/o background
 /gate/source/VoxSource/imageReader/verbose 1
 /gate/source/VoxSource/gps/particle gamma
 /gate/source/VoxSource/gps/ang/type iso
@@ -308,7 +308,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/gps/ang/maxphi 360.0 deg
 /gate/source/VoxSource/gps/energytype Mono
 /gate/source/VoxSource/gps/ene/mono 140.5 keV # For Tc-99m
-/gate/source/VoxSource/gps/ene/mono 159.0 keV # For I-123 primary emission
+#/gate/source/VoxSource/gps/ene/mono 159.0 keV # For I-123 primary emission
 /gate/source/VoxSource/setIntensity 1
 /gate/source/VoxSource/setPosition -120.0 -120.0 -120.0 mm
 /gate/source/VoxSource/dump 1
@@ -570,7 +570,7 @@ The voxelized attenuation phantom is similar to the one described in the [brain 
 
 ## 7.2 Usage in GATE
 
-The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a simple monoenergetic source, where *'VoxSource'* is the source volume name,
 ```ruby
 /gate/source/addSource VoxSource voxel
 /gate/source/VoxSource/reader/insert image
@@ -590,7 +590,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/setPosition -120.0 -120.0 -120.0 mm
 /gate/source/VoxSource/dump 1
 ```
-The following example shows how to define a source of <sup>123</sup>I gammas. The gamma emission data is from the IAEA database: https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html.
+The following example shows how to define a source of all <sup>123</sup>I gammas. The gamma emission data is from the IAEA database: https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html.
 Note that this example shows the gamma emissions only, so the simulation output will be missing the X-ray peaks seen in true <sup>123</sup>I spectra. 
 
 `VS_gamma` is the name of the voxelised gamma source 
@@ -843,7 +843,7 @@ The voxelized attenuation phantom (**Glioblastoma_Attn_92x102x65.i33**) can be u
 
 ## 8.2 Usage in GATE
 
-The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a monoenergetic <sup>123</sup>I source, where *'VoxSource'* is the source volume name,
 ```ruby
 /gate/source/addSource VoxSource voxel
 /gate/source/VoxSource/reader/insert image
@@ -859,7 +859,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 /gate/source/VoxSource/gps/ang/maxphi 360.0 deg
 /gate/source/VoxSource/gps/energytype Mono
 /gate/source/VoxSource/gps/ene/mono 159.0 keV # For I-123 primary emission
-/gate/source/VoxSource/gps/ene/mono 364.0 keV # For I-131 primary emission
+#/gate/source/VoxSource/gps/ene/mono 364.0 keV # For I-131 primary emission
 /gate/source/VoxSource/setIntensity 1
 /gate/source/VoxSource/setPosition -92.0 -102.0 -65.0 mm
 /gate/source/VoxSource/dump 1
@@ -994,7 +994,7 @@ Indices in the voxelized attenuation image are translated into materials via the
 
 We provide the attenuation and activity voxelized phantoms for a patient therapy with  <sup>177</sup>Lu-DOTATATE.  The files are in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The voxelised phantoms are based on a low-dose CT image of a female patient who underwent <sup>177</sup>Lu-DOTATATE therapy at the Christie NHS Foundation Trust, Manchester, UK. Registration and segmentation of the liver, spleen, both kidneys and three tumours was performed by Dr Emma Page at the Christie NHS Foundation Trust, Manchester, UK. The images are for a single bed position. The patient bed has also been manually segmented to permit its material to be specified in GATE. 
 
-Both the attenuation and activity voxelised phantoms are of size 108x70x90. The pixel size is 3.9063 mm and the slice thickness is  4.4196 mm.  <br />
+Both the attenuation and activity voxelised phantoms are of size 108x70x90 voxels. The pixel size is 3.9063 x 3.9063 mm<sup>2</sup> and the slice thickness is  4.4196 mm.  <br />
 
 The attenuation model: patient15_LuDOTATATE_attn.i33 <br />
 The source model: patient15_LuDOTATATE_src.i33

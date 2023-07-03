@@ -56,7 +56,7 @@ The voxelized attenuation phantom (**Defrise_Atn_200x200x200.i33**) can be used 
 
 ## 2.2 Usage in GATE
 
-The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *VoxSource* is the source volume name,
 ```ruby
 /gate/source/addSource VoxSource voxel
 /gate/source/VoxSource/reader/insert image
@@ -78,7 +78,7 @@ The voxelized phantoms (*interfile format*) can be loaded in GATE via the follow
 ```
 The default position of the voxelized source is in the 1<sup>st</sup> quarter, so the voxelized source has to be shifted over half its dimension in the negative direction on each axis. As the voxel size is 1 mm<sup>3</sup>, dimensions of the image (*provided in the file name*) need to be divided by two along X, Y, Z dimensions.
 
-The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *mother* volume (*e.g., world here*). 
 ```ruby
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
@@ -88,7 +88,7 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/VoxAttn/attachPhantomSD
 ```
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Defrise_Range.dat'* file. For example, the following indices to materials conversion,
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *Attenuation_Defrise_Range.dat* file. For example, the following indices to materials conversion,
 ```ruby
 2
 0 0 Air
@@ -173,7 +173,7 @@ The voxelized attenuation phantom (**Jaszczak_238x237x134_Atn.i33**) can be used
 
 ## 4.2 Usage in GATE
 
-The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *VoxSource* is the source volume name,
 ```ruby
 /gate/source/addSource VoxSource voxel
 /gate/source/VoxSource/reader/insert image
@@ -292,7 +292,7 @@ The voxelized attenuation phantom (**Brain_Perfusion_Attn_72x90x77.i33**) can be
 <a name="SourceI123"></a>
 ## [6.2 Usage in GATE](#SourceI123)
 
-The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *'VoxSource'* is the source volume name,
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a <sup>99m</sup>Tc source, where *VoxSource* is the source volume name,
 ```ruby
 /gate/source/addSource VoxSource voxel
 /gate/source/VoxSource/reader/insert image
@@ -531,7 +531,7 @@ Note that this example shows the gamma emissions only, so the simulation output 
 /gate/source/VS_gamma/dump 1
 
 ```
-The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *mother* volume (*e.g., world here*). 
 ```ruby
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
@@ -541,7 +541,7 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/VoxAttn/attachPhantomSD
 ```
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Brain_Range.dat'* file. For example, the following indices to materials conversion,
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *Attenuation_Brain_Range.dat* file. For example, the following indices to materials conversion,
 ```ruby
 4
 0 0 Air
@@ -570,7 +570,7 @@ The voxelized attenuation phantom is similar to the one described in the [brain 
 
 ## 7.2 Usage in GATE
 
-The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a simple monoenergetic source, where *'VoxSource'* is the source volume name,
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a simple monoenergetic source, where *VoxSource* is the source volume name,
 ```ruby
 /gate/source/addSource VoxSource voxel
 /gate/source/VoxSource/reader/insert image
@@ -806,7 +806,7 @@ Note that this example shows the gamma emissions only, so the simulation output 
 /gate/source/VS_gamma/dump 1
 
 ```
-The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *mother* volume (*e.g., world here*). 
 ```ruby
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
@@ -816,7 +816,7 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/VoxAttn/attachPhantomSD
 ```
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Brain_Range.dat'* file. For example, the following indices to materials conversion,
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *Attenuation_Brain_Range.dat* file. For example, the following indices to materials conversion,
 ```ruby
 4
 0 0 Air
@@ -843,7 +843,7 @@ The voxelized attenuation phantom (**Glioblastoma_Attn_92x102x65.i33**) can be u
 
 ## 8.2 Usage in GATE
 
-The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a monoenergetic <sup>123</sup>I source, where *'VoxSource'* is the source volume name,
+The voxelized phantoms (*interfile format*) can be loaded in GATE via the following command lines for a monoenergetic <sup>123</sup>I source, where *VoxSource* is the source volume name,
 ```ruby
 /gate/source/addSource VoxSource voxel
 /gate/source/VoxSource/reader/insert image
@@ -971,7 +971,7 @@ An example of a complete source of <sup>123</sup>I gammas consisting of all the 
 /gate/source/VS_gamma/dump 1
 
 ```
-The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+The voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *mother* volume (*e.g., world here*). 
 ```ruby
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
@@ -981,7 +981,7 @@ The voxelized attenuation phantom can be used as attenuation map in GATE via the
 /gate/VoxAttn/attachPhantomSD
 ```
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_Glioblastoma_Range.dat'* file. For example, the following indices to materials conversion,
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *Attenuation_Glioblastoma_Range.dat* file. For example, the following indices to materials conversion,
 ```ruby
 2
 0 0 Air
@@ -1010,7 +1010,7 @@ Two transaxial slices of the source phantom (pink) overlaid on the attenuation m
 
 ### 9.2 Usage in GATE
 
-As shown in Section 6.2, the  voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *'mother'* volume (*e.g., world here*). 
+As shown in Section 6.2, the  voxelized attenuation phantom can be used as attenuation map in GATE via the following command lines. Note, the voxelized phantom should **A)** not collide with any other system components and **B)** be contained entirely within its *mother* volume (*e.g., world here*). 
 ```ruby
 /gate/world/daughters/name VoxAttn
 /gate/world/daughters/insert ImageNestedParametrisedVolume # Or ImageRegularParametrisedVolume
@@ -1023,7 +1023,7 @@ As shown in Section 6.2, the  voxelized attenuation phantom can be used as atten
 The header file `patient15_LuDOTATATE_attn.h33` must follow a specific format. Note that the line `!name of data file := ./PathTo/patient15_LuDOTATATE_attn.i33` must specify the path to the .i33 file **relative to the GATE macro** and not relative to the header file.  
 
 
-Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *'Attenuation_LuPatient_Range.dat'* file. Since this phantom is based on a low-dose CT, very specific material definition for different organs is not possible. The following indices to materials conversion can be used
+Indices in the voxelized attenuation image are translated into materials via the parameters defined in the *Attenuation_LuPatient_Range.dat* file. Since this phantom is based on a low-dose CT, very specific material definition for different organs is not possible. The following indices to materials conversion can be used
 
 ```ruby
 -2000 100 Air

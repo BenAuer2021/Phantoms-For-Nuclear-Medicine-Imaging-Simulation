@@ -44,7 +44,7 @@ The open-source **mesh50_XCAT** phantom based on the 4D extended cardiac-torso d
 
 ## 2.1 Description
 
-We provide the Defrise attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The 20-cm diameter cylindrical Defrise phantom can be used to estimate axial sampling of nuclear medicine imaging systems. It is based on the Defrise Insert<sup>TM</sup> Model ECT/DEF/[I](https://www.spect.com/wp-content/uploads/2020/06/Micro-Defrise-Phantom.pdf) from Data Spectrum Corporation, Durham, NC, USA. 
+We provide the Defrise attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The 20-cm diameter cylindrical Defrise phantom can be used to estimate axial sampling of nuclear medicine imaging systems. It is based on the Defrise Insert<sup>TM</sup> Model ECT/DEF/I from [Data Spectrum Corporation](https://www.spect.com/wp-content/uploads/2020/06/Micro-Defrise-Phantom.pdf), Durham, NC, USA. 
 
 <p align="center">
   <img width="1191" alt="Screen Shot 2023-06-06 at 3 42 03 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/6d1ebc0e-0ae9-4ea6-915d-f469efc60d5a">

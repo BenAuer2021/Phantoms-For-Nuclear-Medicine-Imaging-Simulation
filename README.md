@@ -46,9 +46,10 @@ The open-source **mesh50_XCAT** phantom based on the 4D extended cardiac-torso d
 
 We provide the Defrise attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The 20-cm diameter cylindrical Defrise phantom can be used to estimate axial sampling of nuclear medicine imaging systems. It is based on the Defrise Insert<sup>TM</sup> Model ECT/DEF/I from [Data Spectrum Corporation](https://www.spect.com/wp-content/uploads/2020/06/Micro-Defrise-Phantom.pdf), Durham, NC, USA. 
 
-<p align="center">
-  <img width="1191" alt="Screen Shot 2023-06-06 at 3 42 03 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/6d1ebc0e-0ae9-4ea6-915d-f469efc60d5a">
-</p>
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/f39a22af-cc38-43f6-a5d2-79e42d725a24)
+
+
+
 
 The 20-cm long Defrise phantom consists of a series of 13 hot disks (20-cm diameter, 8 mm in length) evenly spaced 8 mm apart along the axial direction. The Defrise activity phantom (**Defrise_200x200x200.i33**) can be simulated as being filled with uniform tracer activity throughout the volume of the hot disks. The integer values for the hot and cold disk are set to 10 and 0, respectively. It consists of 200x200x200 voxels of 1 mm<sup>3</sup> (size of 16 MB).
   
@@ -103,6 +104,9 @@ We provide the Derenzo attenuation and activity voxelized phantoms in interfile 
 <p align="center">
   <img width="857" alt="Screen Shot 2023-06-06 at 4 50 43 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/62392420-cfc9-441e-9820-6e13a0bc3478">
 </p>
+
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/a745b970-d0ef-4d01-bd31-05a34f1a3345)
+
 
 This cylindrical phantom of 22 cm diameter by 16 cm in height, was adapted from the rod
 region of the ultra-deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation]
@@ -165,6 +169,9 @@ We provide the Jaszczak attenuation and activity voxelized phantoms in interfile
 <img width="872" alt="Screen Shot 2023-06-06 at 5 50 07 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/2bce2ebd-0263-4e17-9ea8-ee2a5bd34d03">
 </p>
 
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/1f86fe65-e371-4cae-bbfb-e639712c8184)
+
+
 This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation](http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with cold spheres, and another one with cold rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
 
 The Jaszczak activity phantom (**Jaszczak_238x237x134.i33**) can be simulated as being filled with uniform tracer activity. The integer values for the hot and cold regions are set to 10 and 0, respectively. It consists of 238x237x134 voxels of 0.939453x0.939453x1.25 mm<sup>3</sup> (size of 15.1 MB).
@@ -221,6 +228,8 @@ We provide the fillable Jaszczak attenuation and activity voxelized phantoms in 
 <p align="center">
 <img width="700" alt="Screen Shot 2023-06-06 at 5 49 48 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3b0bfd85-8cb8-4edd-90da-499c29247dd1">
 </p>
+
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/652f631d-7cc2-4226-8634-51e4c435a79a)
 
 This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation](http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with hot spheres, and another **one** with **hot** rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
 
@@ -284,6 +293,8 @@ For additional information, please see below references,
 <p align="center">
 <img width="700" alt="Screen Shot 2023-06-20 at 10 44 55 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/f5e26af5-a280-4526-bd11-482d4af3d34a">
 </p>
+
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/d15f3e4c-17a3-431c-bb61-40478085fbe2)
 
 The brain perfusion activity phantom can be simulated  (**Brain_Perfusion_Source_120x120x120.i33**) as being filled with uniform tracer activity in striatum:grey matter:white matter : lungs : liver : background of 10.1:9.3:2.3:6.0:11.4:1. The integer values are set to 10 for the soft tissue, 100 for the skin, 230 for the white matter, 920 for the grey matter, and 1012 for the striatum. It consists of 120x120x120 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 3.5 MB).
   
@@ -564,6 +575,9 @@ For additional information, please see below references,
 <img width="700" alt="Screen Shot 2023-06-20 at 11 18 11 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/7af618e5-6fb0-465c-8534-e6408c5f4214">
 </p>
 
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/f8f30651-3cdd-4254-908b-f08c1144ca3f)
+
+
 The brain DaT activity phantom can be simulated (**DaT_Source_120x120x120.i33**) as being filled with uniform tracer activity in striatum:background of 8:1. The integer values are set to 10 for the background and 800 for the striatum. It consists of 120x120x120 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 3.5 MB).
   
 The voxelized attenuation phantom is similar to the one described in the [brain perfusion section](#BrainPerfusion) (**DaT_Attenuation_72x90x77.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation.
@@ -836,6 +850,8 @@ For additional information, please see below references,
 <p align="center">
 <img width="700" alt="Screen Shot 2023-06-20 at 11 43 32 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/11c2437c-2e83-4222-b93e-a77b78751434">
 </p>
+
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/85741ef2-664a-4a92-a7f6-30f136147685)
 
 The brain glioblastoma activity phantom can be simulated (**Glioblastoma_Source_92x102x65.i33**) as being filled with uniform tracer activity in tumor:background of 3:1. The integer values are set to 1 for the background and 3 for the non-enhancing and MR-enhancing tumor volumes. Necrosis and Edema volumes uptake were set to 0.  It consists of 92x102x65 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 1.2 MB).
   

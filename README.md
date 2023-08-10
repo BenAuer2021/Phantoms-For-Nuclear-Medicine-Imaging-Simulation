@@ -1001,11 +1001,13 @@ The source model: patient15_LuDOTATATE_src.i33
 
 GATE applies a flip in the y-axis, so these phantoms have already been flipped to correct for that. A screenshot of the attenuation file (re-oriented) is shown below: 
 
-![LuP15_attn_full](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/ce97cbf1-4faa-405e-abcf-20e1d86698ba)
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/5c47e2ba-da87-4c11-9907-f2833f1cd7f6)
+
 
 Two transaxial slices of the source phantom (pink) overlaid on the attenuation model (blue) are shown below. The top image shows the liver, kidneys and spleen and the bottom shows two of the tumours: 
-![LuP15_src_full](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/7694440e-dee4-488b-8d4b-ef15b69bf9c9)
-![LuP15_src_full_tumours](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/5aa4f593-9731-44ce-8b2b-94d398eae0c3)
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/8e6294aa-0b5c-4032-8baf-2900b55d9ca6)
+![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/3ac9af7e-e8d0-45f9-b888-444a816c1a8f)
+
 
 
 ### 9.2 Usage in GATE

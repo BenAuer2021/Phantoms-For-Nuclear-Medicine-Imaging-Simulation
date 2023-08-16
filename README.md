@@ -102,11 +102,8 @@ Indices in the voxelized attenuation image are translated into materials via the
 We provide the Derenzo attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The Derenzo phantom can be used to estimate the tomographic spatial resolution of nuclear medicine imaging systems.
 
 <p align="center">
-  <img width="857" alt="Screen Shot 2023-06-06 at 4 50 43 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/62392420-cfc9-441e-9820-6e13a0bc3478">
+  <img width="857" alt="Screen Shot 2023-08-16 at 5 06 05 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/07c9889c-55eb-49f0-97e6-c523768d0861">
 </p>
-
-![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/a745b970-d0ef-4d01-bd31-05a34f1a3345)
-
 
 This cylindrical phantom of 22 cm diameter by 16 cm in height, was adapted from the rod
 region of the ultra-deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation]
@@ -166,11 +163,8 @@ Indices in the voxelized attenuation image are translated into materials via the
 We provide the Jaszczak attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The Jaszczak phantom is used to estimate tomographic uniformity, contrast, and spatial resolution in SPECT quality control procedures.
 
 <p align="center">
-<img width="872" alt="Screen Shot 2023-06-06 at 5 50 07 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/2bce2ebd-0263-4e17-9ea8-ee2a5bd34d03">
+<img width="872" alt="Screen Shot 2023-08-16 at 5 06 58 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/1bc1d55d-bf7e-4c28-8f55-fcff8f905318">
 </p>
-
-![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/1f86fe65-e371-4cae-bbfb-e639712c8184)
-
 
 This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation](http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with cold spheres, and another one with cold rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
 
@@ -226,10 +220,8 @@ Indices in the voxelized attenuation image are translated into materials via the
 We provide the fillable Jaszczak attenuation and activity voxelized phantoms in interfile format (*16-bit unsigned integer, \*.i33 for raw data and \*.h33 for the header files*). The fillable Jaszczak phantom can be used to estimate tomographic uniformity, contrast, and spatial resolution in SPECT and PET. Counter to the regular Jaszczak phantom described in the section 4 above, it simulates spheres and rods filled with activity (instead of cold).
 
 <p align="center">
-<img width="700" alt="Screen Shot 2023-06-06 at 5 49 48 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3b0bfd85-8cb8-4edd-90da-499c29247dd1">
+<img width="1356" alt="Screen Shot 2023-08-16 at 5 07 37 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/25de95dd-a312-4762-8a12-9fb280c2f3fe">
 </p>
-
-![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/652f631d-7cc2-4226-8634-51e4c435a79a)
 
 This cylindrical phantom of 22 cm diameter by 16.7 cm in height, was adapted from a CT acquisition of a deluxe Jaszczak phantom<sup>TM</sup> from [Data Spectrum Corporation](http://www.spect.com/products-all.html). The phantom consists of 3 sectors, one uniform, one with hot spheres, and another **one** with **hot** rods. The spheres are 9.5, 12.7, 15.9, 19.1, 25.4, and 31.8 mm in diameter. The rods are 4.8, 6.4, 7.9, 9.5, 11.1, and 12.7 mm in diameter. The centre-to-centre distance between two adjacent rods was equal to two times the rod diameter.
 
@@ -291,7 +283,7 @@ For additional information, please see below references,
 > - C Lindsay, B Auer, Y Yang, LR Furenlid, and and MA King (2018, November). Creation of a population of patient phantoms for deep learning-based denoising of spect brain imaging. In 2019, 7th International Workshop on Computational Human Phantoms.
 
 <p align="center">
-<img width="700" alt="Screen Shot 2023-06-20 at 10 44 55 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/f5e26af5-a280-4526-bd11-482d4af3d34a">
+<img width="805" alt="Screen Shot 2023-08-16 at 5 08 14 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3c4305eb-4b3c-40f2-82da-4a10df8c50c5">
 </p>
 
 ![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/d15f3e4c-17a3-431c-bb61-40478085fbe2)
@@ -572,7 +564,7 @@ For additional information, please see below references,
 > - C Lindsay, B Auer, Y Yang, LR Furenlid, and and MA King (2018, November). Creation of a population of patient phantoms for deep learning-based denoising of spect brain imaging. In 2019, 7th International Workshop on Computational Human Phantoms.
 
 <p align="center">
-<img width="700" alt="Screen Shot 2023-06-20 at 11 18 11 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/7af618e5-6fb0-465c-8534-e6408c5f4214">
+<img width="784" alt="Screen Shot 2023-08-16 at 5 08 48 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/c28fc110-775a-4d60-9724-fe951dc12a11">
 </p>
 
 ![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/f8f30651-3cdd-4254-908b-f08c1144ca3f)

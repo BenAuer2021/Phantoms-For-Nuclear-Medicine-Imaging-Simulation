@@ -48,9 +48,6 @@ We provide the Defrise attenuation and activity voxelized phantoms in interfile 
 
 ![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/f39a22af-cc38-43f6-a5d2-79e42d725a24)
 
-
-
-
 The 20-cm long Defrise phantom consists of a series of 13 hot disks (20-cm diameter, 8 mm in length) evenly spaced 8 mm apart along the axial direction. The Defrise activity phantom (**Defrise_200x200x200.i33**) can be simulated as being filled with uniform tracer activity throughout the volume of the hot disks. The integer values for the hot and cold disk are set to 10 and 0, respectively. It consists of 200x200x200 voxels of 1 mm<sup>3</sup> (size of 16 MB).
   
 The voxelized attenuation phantom (**Defrise_Atn_200x200x200.i33**) can be used in attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation. The integer values for the hot and cold disk are set to 1 and 0, respectively. Similarly to the activity phantom, it consists of 200x200x200 voxels of 1 mm<sup>3</sup> (size of 16 MB).
@@ -285,8 +282,6 @@ For additional information, please see below references,
 <p align="center">
 <img width="805" alt="Screen Shot 2023-08-16 at 5 08 14 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/3c4305eb-4b3c-40f2-82da-4a10df8c50c5">
 </p>
-
-![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/d15f3e4c-17a3-431c-bb61-40478085fbe2)
 
 The brain perfusion activity phantom can be simulated  (**Brain_Perfusion_Source_120x120x120.i33**) as being filled with uniform tracer activity in striatum:grey matter:white matter : lungs : liver : background of 10.1:9.3:2.3:6.0:11.4:1. The integer values are set to 10 for the soft tissue, 100 for the skin, 230 for the white matter, 920 for the grey matter, and 1012 for the striatum. It consists of 120x120x120 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 3.5 MB).
   
@@ -567,9 +562,6 @@ For additional information, please see below references,
 <img width="784" alt="Screen Shot 2023-08-16 at 5 08 48 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/c28fc110-775a-4d60-9724-fe951dc12a11">
 </p>
 
-![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/f8f30651-3cdd-4254-908b-f08c1144ca3f)
-
-
 The brain DaT activity phantom can be simulated (**DaT_Source_120x120x120.i33**) as being filled with uniform tracer activity in striatum:background of 8:1. The integer values are set to 10 for the background and 800 for the striatum. It consists of 120x120x120 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 3.5 MB).
   
 The voxelized attenuation phantom is similar to the one described in the [brain perfusion section](#BrainPerfusion) (**DaT_Attenuation_72x90x77.i33**) can be used for attenuation correction for SPECT or PET reconstruction and/or as attenuation media for simulation.
@@ -840,10 +832,8 @@ For additional information, please see below references,
 > - Auer B, Kalluri KS, Abayazeed A et al. 2020. [Aperture size selection for improved brain tumor detection and quantification in multi-pinhole 123I-CLINDE SPECT imaging](https://ieeexplore.ieee.org/abstract/document/9508019). In 2020 IEEE Nuclear Science Symposium and Medical Imaging Conference (NSS/MIC) (pp. 1-2).
 
 <p align="center">
-<img width="700" alt="Screen Shot 2023-06-20 at 11 43 32 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/11c2437c-2e83-4222-b93e-a77b78751434">
+<img width="631" alt="Screen Shot 2023-08-16 at 5 10 29 PM" src="https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/84809217/d122a142-d49a-4ec7-8ce2-59a0e75aa0b8">
 </p>
-
-![image](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation/assets/55833314/85741ef2-664a-4a92-a7f6-30f136147685)
 
 The brain glioblastoma activity phantom can be simulated (**Glioblastoma_Source_92x102x65.i33**) as being filled with uniform tracer activity in tumor:background of 3:1. The integer values are set to 1 for the background and 3 for the non-enhancing and MR-enhancing tumor volumes. Necrosis and Edema volumes uptake were set to 0.  It consists of 92x102x65 voxels of 2.0x2.0x2.0 mm<sup>3</sup> (size of 1.2 MB).
   
